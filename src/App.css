@@ -1,0 +1,44 @@
+.App {
+  
+}
+
+.App__logo {
+  height: 40vmin;
+}
+
+.center {
+  text-align: center;
+}
+
+.App__header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+
+.detail-page {
+  margin: 50px;
+}
+
+.detail-page__equip {
+  display: flex;
+}
+
+.detail-page__equip--wrap { 
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.detail-page__list--none {
+  list-style: none;
+}
