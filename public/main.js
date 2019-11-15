@@ -1,27 +1,35 @@
-const electron = require("electron") 
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const { app, ipcMain, BrowserWindow }  = require("electron") 
 
 const path = require('path');
 const isDev = require('electron-is-dev');
-const { ipcMain } = require('electron');
-
-var os = require("os");
+const url = require('url')
 const si = require('systeminformation');
 
 let mainWindow;
 
 function createWindow() {
+  const startUrl = isDev ? 'http://localhost:5555' : url.format({
+    pathname: path.join(__dirname, '../build/index.html'),
+    protocol: 'file:',
+    slashes: true,
+  });
+
   mainWindow = new BrowserWindow({width: 900, height: 680,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      // webSecurity: false,
+      preload: path.join(__dirname, 'preload.js')
     }});
-  mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, './build/index.html')}`);
+    
+    mainWindow.loadURL(startUrl);
   if (isDev) {
     // Open the DevTools.
     //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
-    mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();  
   }
+
+  mainWindow.webContents.openDevTools();  
+
   mainWindow.on('closed', () => mainWindow = null);
 }
 

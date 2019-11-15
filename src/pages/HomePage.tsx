@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useHistory } from "react-router-dom";
 
-import logo from './../logo.svg';
-const { ipcRenderer } = window.require('electron');
+const { ipcRenderer } = window; 
+
 
 export interface HomePageProps {
 
@@ -13,7 +13,6 @@ const HomePage: React.SFC<HomePageProps> = () => {
     const [name, setName] = React.useState('')
     return (
         <header className="App__header">
-            <img src={logo} className="App__logo" alt="logo" />
             <p>
                 Name:
                 <input type="text" name="name" id="name"
@@ -23,10 +22,8 @@ const HomePage: React.SFC<HomePageProps> = () => {
                     }}
                 />
             </p>
-            <a
+            <button
                 className="App-link"
-                href="#"
-                rel="noopener noreferrer"
                 onClick={
                     () => {
                         ipcRenderer.send('get-cpu')
@@ -35,12 +32,11 @@ const HomePage: React.SFC<HomePageProps> = () => {
                         ipcRenderer.send('get-mem-layout')
                         
                         history.push("/detail/" + name);
-                        
                     }
                 }
             >
                 Go Go Go
-            </a>
+            </button>
         </header>
     );
 }

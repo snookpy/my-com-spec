@@ -5,7 +5,7 @@ import { IMemory, IMemmoryLayout } from '../types/memoryType';
 import IDisk from '../types/diskType';
 import ICPU from '../types/cpuType';
 
-const { ipcRenderer } = window.require('electron');
+const { ipcRenderer } = window;
 
 export interface DetailPageProps {
     match: any
